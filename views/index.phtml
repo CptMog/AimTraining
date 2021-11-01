@@ -4,12 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./views/css/style.css">
     <title>Aim-trainnig</title>
 </head>
 <body>
-    <div id="app">
-        <canvas id="canvx" height="600" width="800"></canvas>
-    </div>
-    <button>Start Game</button>
+    <header>
+        <span>Aim training</span>
+    </header>
+    <main>
+        <div id="app">
+            <h2>Click on all the targets before end</h2>
+            <canvas id="canvx" height="450" width="1020"></canvas>
+        </div>
+        <div id="box_board">
+            <div><span>Timer : </span></div>
+            <div><span>Score : </span></div>
+            <button>Start Game</button>
+        </div>
+    </main>
+    <script src="./views/js/main.js"></script>
 </body>
 </html>
