@@ -4,6 +4,8 @@ export default class Target{
         this.objDom = objDom;
         this.targets = new Array();
         this.ctx = objDom.getContext('2d');
+        this.ctx.font = '48px sans-serif';
+        this.ctx.fillText('Click the start button',this.objDom.width/3.5, this.objDom.height/2);
     }
 
     drawTarget(x,y){
@@ -16,23 +18,30 @@ export default class Target{
 
     targetDestroyed(x,y){
 
-        this.ctx.fillStyle = "#fff";
-        this.ctx.fillRect(0, 0, this.objDom.width, this.objDom.height);
+        
         const newListTarget = this.targets.filter(coords =>{ 
             if(!(coords.corx-60 <= x && x <= coords.corx+60) || !(coords.cory-60 <= y && y <= coords.cory+60)){
                 return coords;
             }
          })
+        if(Target != []){
 
-        for(const coord of newListTarget ){
-            this.drawTarget(coord.corx,coord.cory);
+            this.ctx.fillStyle = "#fff";
+            this.ctx.fillRect(0, 0, this.objDom.width, this.objDom.height);
+
+            for(const coord of newListTarget ){
+                this.drawTarget(coord.corx,coord.cory);
+            }
+
+            this.targets = newListTarget;
+        
         }
-
-        this.targets = newListTarget;
 
     }
 
     generatePopUp(nbr){
+        this.ctx.fillStyle = "#fff";
+        this.ctx.fillRect(0, 0, this.objDom.width, this.objDom.height);
         let curr_target = 1;
 
         while(curr_target <= nbr){
