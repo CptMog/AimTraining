@@ -15,6 +15,23 @@ export default class Target{
     }
 
     targetDestroyed(x,y){
+        // for(const coord of this.targets){
+        //     if()
+        // }
+        this.ctx.fillStyle = "#fff";
+        this.ctx.fillRect(0, 0, this.objDom.width, this.objDom.height);
+        
+        const coordToDelete  = this.targets.filter((coords)=>{
+            if(coords.corx-60 <= x && x <= coords.corx+60){
+                if(coords.cory-60 <= y && y <= coords.cory+60){
+                    return coords;
+                }
+            }
+        })
+
+        
+        console.log(this.targets);
+        console.log(coordToDelete);
 
     }
 
