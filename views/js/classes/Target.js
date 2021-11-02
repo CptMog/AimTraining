@@ -18,20 +18,19 @@ export default class Target{
 
         this.ctx.fillStyle = "#fff";
         this.ctx.fillRect(0, 0, this.objDom.width, this.objDom.height);
-        
-        const newTargetList = this.targets.filter((coords)=>{
-            if(!(coords.corx-60 <= x && x <= coords.corx+60)){
-                if(!(coords.cory-60 <= y && y <= coords.cory+60)){
-                    return coords;
-                }
+        // (coords.corx-60 <= x && x <= coords.corx+60)&&(coords.cory-60 <= y && y <= coords.cory+60)
+        const newListTarget = this.targets.filter(coords =>{ 
+            if(!(coords.corx-60 <= x && x <= coords.corx+60) || !(coords.cory-60 <= y && y <= coords.cory+60)){
+                return coords;
             }
-        })
-
-        for(const coord of newTargetList ){
+         })
+        // console.log(this.targets);
+        // console.log(target);
+        for(const coord of newListTarget ){
             this.drawTarget(coord.corx,coord.cory);
         }
 
-        this.targets = newTargetList;
+        this.targets = newListTarget;
 
     }
 

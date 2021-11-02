@@ -2,7 +2,7 @@ import Target from './classes/Target.js';
 
 let screenTarget = new Target(document.querySelector("#canvx"));
 
-screenTarget.generatePopUp(3);
+screenTarget.generatePopUp(5);
 
 document.querySelector("#canvx").addEventListener('click',(e)=>{
     const rect = document.querySelector("#canvx").getBoundingClientRect()
