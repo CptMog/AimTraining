@@ -1,7 +1,8 @@
 import Target from './classes/Target.js';
 
 let screenTarget = new Target(document.querySelector("#canvx"));
-
+screenTarget.setTimerBoard = document.querySelector("#timer");
+screenTarget.setScoreBoard = document.querySelector("#score");
 screenTarget.generatePopUp(5);
 
 document.querySelector("#canvx").addEventListener('click',(e)=>{

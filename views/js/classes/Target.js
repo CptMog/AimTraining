@@ -18,14 +18,12 @@ export default class Target{
 
         this.ctx.fillStyle = "#fff";
         this.ctx.fillRect(0, 0, this.objDom.width, this.objDom.height);
-        // (coords.corx-60 <= x && x <= coords.corx+60)&&(coords.cory-60 <= y && y <= coords.cory+60)
         const newListTarget = this.targets.filter(coords =>{ 
             if(!(coords.corx-60 <= x && x <= coords.corx+60) || !(coords.cory-60 <= y && y <= coords.cory+60)){
                 return coords;
             }
          })
-        // console.log(this.targets);
-        // console.log(target);
+
         for(const coord of newListTarget ){
             this.drawTarget(coord.corx,coord.cory);
         }
@@ -45,5 +43,13 @@ export default class Target{
             curr_target++;
         }
        
+    }
+
+    set setScoreBoard(obj){
+        this.scoreBoard = obj;
+    }
+
+    set setTimerBoard(obj){
+        this.timerBoard = obj;
     }
 }
