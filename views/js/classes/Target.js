@@ -2,6 +2,7 @@ export default class Target{
 
     constructor(objDom){
         this.objDom = objDom;
+        this.targets = new Array();
         this.ctx = objDom.getContext('2d');
     }
 
@@ -13,6 +14,10 @@ export default class Target{
         this.ctx.closePath();
     }
 
+    targetDestroyed(x,y){
+
+    }
+
     generatePopUp(nbr){
         let curr_target = 1;
 
@@ -20,7 +25,9 @@ export default class Target{
             let x = Math.floor(Math.random() * this.objDom.width-50);
             let y = Math.floor(Math.random() * this.objDom.height+50);
             setTimeout(() => { this.drawTarget(x,y) },curr_target*500);
+            this.targets.push({corx : x, cory : y});
             curr_target++;
         }
+       
     }
 }
