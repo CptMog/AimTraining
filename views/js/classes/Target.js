@@ -38,15 +38,22 @@ export default class Target{
                 this.setScore = 100;
             }
 
+            this.updateBoard()
+
             this.targets = this.targets.filter(coords =>{ 
                 // !(coords.corx-60 <= x && x <= coords.corx+60) || !(coords.cory-60 <= y && y <= coords.cory+60)
                 if(!(coords.corx-60 <= x && x <= coords.corx+60) || !(coords.cory-60 <= y && y <= coords.cory+60)){
                     return coords;
                 }
             })
-        
+
+            
         }
 
+    }
+
+    updateBoard(){
+        this.scoreBoard.innerText= this.score;
     }
 
     generatePopUp(nbr){
@@ -74,6 +81,7 @@ export default class Target{
 
     set setScoreBoardObj(obj){
         this.scoreBoard = obj;
+        // this.scoreBoard.innerText= this.score;
     }
 
     set setTimerBoardObj(obj){
