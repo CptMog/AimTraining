@@ -29,10 +29,11 @@ canvas{
 main{
     display: flex;
     justify-content: space-evenly;
+    background-color: #fff;
 }
 
 main #box_board div{
-    padding: 2rem 8rem;
+    padding: 1.5rem 5rem;
     background-color:#656565;
     color: white;
 }
@@ -40,8 +41,8 @@ main #box_board div{
 main #box_board button{
     background-color: #4B2D4D;
     color: white;
-    padding: 2rem;
-    border-radius: 1rem;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
     border: none;
     font-size: 1.8rem;
 }
