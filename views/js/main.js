@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         screenTarget.generatePopUp(15);
     })
 
-    // window.requestAnimationFrame();
+    window.requestAnimationFrame();
 })
 
 
