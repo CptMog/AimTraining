@@ -2,7 +2,6 @@ export default class Target{
     
     constructor(objDom){
         this.COLOR = { kind:'#4B2D4D', evil:'red' };
-        this.timer = 30;
         this.objDom = objDom;
         this.score = 0;
         this.targets = new Array();
@@ -54,25 +53,29 @@ export default class Target{
     }
 
     updateBoard(){
+
         this.timer <= 0? this.timer = 0:this.timer--;
         this.scoreBoard.innerText= this.score;
+        this.timerBoard.innerText= "00:"+this.timer;
     }
 
     generatePopUp(nbr){
+
         //clean the board
         this.ctx.fillStyle = "#fff";
         this.ctx.fillRect(0, 0, this.objDom.width, this.objDom.height);
 
-        //clear th array
+        //clear the array
         this.targets = Array();
         let curr_target = 1;
 
         //clean the ids of timers
-        clearTimeout(this.idTime);
+        clearTimeout(this.idTimeOut);
         clearInterval(this.idIterval);
-
-       this.idIterval = setInterval(() => {
-            this.timerBoard.innerText= "00:"+this.timer;
+        this.score = 0;
+        this.timer = 16;
+        this.updateBoard();
+        this.idIterval = setInterval(() => {
             this.updateBoard();
         }, 1000);
 
@@ -101,7 +104,6 @@ export default class Target{
 
     set setScoreBoardObj(obj){
         this.scoreBoard = obj;
-        // this.scoreBoard.innerText= this.score;
     }
 
     set setTimerBoardObj(obj){
