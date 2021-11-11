@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     })
 
     document.querySelector('#start').addEventListener('click', e =>{
-        screenTarget.generatePopUp(5);
+        screenTarget.generatePopUp(20);
     })
 
     window.requestAnimationFrame();
