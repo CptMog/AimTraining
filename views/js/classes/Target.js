@@ -69,7 +69,7 @@ export default class Target{
         this.targets = Array();
         let curr_target = 1;
 
-        //clean the ids of timers
+        //clean the ids of timers and the board
         clearTimeout(this.idTimeOut);
         clearInterval(this.idIterval);
         this.score = 0;
