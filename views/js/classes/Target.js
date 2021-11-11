@@ -48,32 +48,43 @@ export default class Target{
                     return coords;
                 }
             })
-
             
         }
 
     }
 
     updateBoard(){
+        this.timer <= 0? this.timer = 0:this.timer--;
         this.scoreBoard.innerText= this.score;
-        this.timerBoard.innerText= "00:"+this.timer;
     }
 
     generatePopUp(nbr){
+        //clean the board
         this.ctx.fillStyle = "#fff";
         this.ctx.fillRect(0, 0, this.objDom.width, this.objDom.height);
+
+        //clear th array
+        this.targets = Array();
         let curr_target = 1;
-        setInterval(() => {
-            this.timer--;
+
+        //clean the ids of timers
+        clearTimeout(this.idTime);
+        clearInterval(this.idIterval);
+
+       this.idIterval = setInterval(() => {
+            this.timerBoard.innerText= "00:"+this.timer;
             this.updateBoard();
         }, 1000);
+
         while(curr_target <= nbr){
             const color = ((Math.floor(Math.random() * 3)%2 == 0)?this.COLOR.evil:this.COLOR.kind);
             //metter les valeurs de x et y dans un variables et faire une opération dessus pour s'assurer qu'il reste 
             //dans le cadre 
-            let x = Math.floor(Math.random() * this.objDom.width-50);  
+            let x = Math.floor(Math.random() * this.objDom.width-50); 
+            x += (x <= 0 ?100 : 0); 
             let y = Math.floor(Math.random() * this.objDom.height-50);
-            setTimeout(() => { this.drawTarget(x,y,color) },curr_target*500);
+            y += (y <= 0 ?100 : 0); 
+            this.idTimeOut = setTimeout(() => { this.drawTarget(x,y,color) },curr_target*500);
             this.targets.push({corx : x, cory : y, type:color});
             curr_target++;
         }
