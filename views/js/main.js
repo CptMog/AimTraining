@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     })
 
     document.querySelector('#start').addEventListener('click', e =>{
-        screenTarget.generatePopUp(20);
+        screenTarget.generatePopUp(15);
     })
 
-    window.requestAnimationFrame();
+
 })
 
 

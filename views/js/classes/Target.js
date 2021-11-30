@@ -3,6 +3,9 @@ export default class Target{
     constructor(objDom){
         this.COLOR = { kind:'#4B2D4D', evil:'red' };
         this.objDom = objDom;
+        this.idTimeOut = null;
+        this.idIterval = null;
+        this.timer = 0;
         this.score = 0;
         this.targets = new Array();
         this.ctx = objDom.getContext('2d');
@@ -20,20 +23,24 @@ export default class Target{
     }
 
     targetDestroyed(x,y){
+        
         let passez = 0;
-        const newListTarget = this.targets.filter(coords =>{ 
-            // !(coords.corx-60 <= x && x <= coords.corx+60) || !(coords.cory-60 <= y && y <= coords.cory+60)
+        const newTarget = [];
+
+        for (const target of this.targets) {
             if(passez == 0){
-                if((coords.corx-60 <= x && x <= coords.corx+60) && (coords.cory-60 <= y && y <= coords.cory+60)){
-                    passez = 1;
-                    return coords;
+                if((target.corx-60 <= x && x <= target.corx+60) && (target.cory-60 <= y && y <= target.cory+60)){
+                    passez =1;
+                    newTarget.push(target);
+                    
                 }
             }
-         })
-
-        if(newListTarget != []){
             
-            for(const coord of newListTarget ){
+        }
+
+        if(newTarget != []){
+            
+            for(const coord of newTarget ){
                 this.ctx.beginPath();
                 this.ctx.fillStyle = '#fff';
                 this.ctx.arc(coord.corx,coord.cory, 61 , 0, 360, 0);
@@ -46,11 +53,19 @@ export default class Target{
             this.updateBoard()
 
             this.targets = this.targets.filter(coords =>{ 
-                // !(coords.corx-60 <= x && x <= coords.corx+60) || !(coords.cory-60 <= y && y <= coords.cory+60)
                 if(!(coords.corx-60 <= x && x <= coords.corx+60) || !(coords.cory-60 <= y && y <= coords.cory+60)){
                     return coords;
                 }
             })
+            // const newTargetList = [];
+            // for (const target of this.targets) {
+            //     if(target != newTarget){
+            //         newTargetList.push(target);
+            //     }
+            // }
+
+            this.targets = newTargetList;
+            // this.targets.slice(,1)
             
         }
 
@@ -60,7 +75,7 @@ export default class Target{
 
         this.timer <= 0? this.timer = 0:this.timer--;
         this.scoreBoard.innerText= this.score;
-        this.timerBoard.innerText= "00:"+this.timer;
+        this.timerBoard.innerText= ((this.timer > 9) ? "00:"+this.timer : "00:"+"0"+this.timer);
     }
     
     cleaner(){
@@ -71,11 +86,12 @@ export default class Target{
 
         //clear the array
         this.targets = Array();
-        
 
         //clean the ids of timers and the board
         clearTimeout(this.idTimeOut);
+        this.idTimeOut = null;
         clearInterval(this.idIterval);
+        this.idIterval = null;
         this.score = 0;
         this.timer = 16;
         this.updateBoard();
@@ -89,6 +105,7 @@ export default class Target{
         this.cleaner();
         
         let curr_target = 1;
+        let time=1;
 
         while(curr_target <= nbr){
 
@@ -99,12 +116,15 @@ export default class Target{
 
             x += (x <= 0 ?100 : 0); 
             y += (y <= 0 ?100 : 0); 
-
-            this.idTimeOut = setTimeout(() => { this.drawTarget(x,y,color) },curr_target*500);
             
             this.targets.push({corx : x, cory : y, type:color});
 
             curr_target++;
+        }
+
+        for(const elem of this.targets){
+            this.idTimeOut = setTimeout(() => { this.drawTarget(elem.corx,elem.cory,elem.type) },time*400);
+            time++;
         }
        
     }
