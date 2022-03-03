@@ -1,6 +1,18 @@
+/**
+ * CLASS TARGET
+ * 
+ * this file content the target class identity.
+ * @author : Djawad Mohamed
+ */
+
 export default class Target{
-    
+        
+    /**
+     * the constructor take an object dom who represente the canvas
+     * @param {object} objDom 
+     */
     constructor(objDom){
+
         this.COLOR = { kind:'#4B2D4D', evil:'red' };
         this.objDom = objDom;
         this.idTimeOut = null;
@@ -13,15 +25,25 @@ export default class Target{
         this.ctx.fillText('Click the start button',this.objDom.width/3.5, this.objDom.height/2);
     }
 
+    /**
+     * function who draw the target on space
+     * @param {int} x 
+     * @param {int} y 
+     * @param {object} color 
+     */
     drawTarget(x,y,color){
         
         this.ctx.beginPath();
         this.ctx.fillStyle = color;
-        this.ctx.arc(x, y, 60 , 0, 360, 0);
+        this.ctx.arc(x, y, 60 , 0, 2 * Math.PI, false);
         this.ctx.fill();
-        this.ctx.closePath();
     }
 
+    /**
+     * function that destroy a targets
+     * @param {int} x 
+     * @param {int} y 
+     */
     targetDestroyed(x,y){
         
         let passez = 0;
@@ -52,19 +74,33 @@ export default class Target{
 
             this.updateBoard()
 
-            this.targets = this.targets.filter(coords =>{ 
-                if(!(coords.corx-60 <= x && x <= coords.corx+60) || !(coords.cory-60 <= y && y <= coords.cory+60)){
-                    return coords;
-                }
-            })
+            // this.targets = this.targets.filter(coords =>{ 
+            //     if(!(coords.corx-60 <= x && x <= coords.corx+60) || !(coords.cory-60 <= y && y <= coords.cory+60)){
+            //         return coords;
+            //     }
+            // })
             // const newTargetList = [];
             // for (const target of this.targets) {
-            //     if(target != newTarget){
-            //         newTargetList.push(target);
-            //     }
+                
+            //         if((target.corx != newTarget.corx) && (target.cory != newTarget.cory)){
+            //             newTargetList.push(target);
+            //             console.log(newTargetList);
+            //         }
+                
             // }
 
-            this.targets = newTargetList;
+            this.targets = this.targets.filter(target => {
+                // const res = ;
+                // console.log(target.corx- newTarget.corx)
+                // console.log(res);
+                if(((target.corx - newTarget.corx) + (target.cory - newTarget.cory)) != 0){
+                    return target;
+                }
+            });
+
+            console.log(this.targets)
+
+            // this.targets = newTargetList;
             // this.targets.slice(,1)
             
         }
