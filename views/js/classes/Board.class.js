@@ -18,6 +18,8 @@ export default class Board{
 
         this.targets = [];
 
+        this.tab_ids = [];
+
         this.color = {
             EVIL : 'red',
             KIND : '#4B2D4D'
@@ -65,31 +67,51 @@ export default class Board{
     }
 
     /**
-     * function that destroyes the target on screen
+     * function that destroye the target selected
      * @param {Target} target 
      */
     destroyTargetsToTarget(target){
-        // let targets_tampon = this.targets.map(item => item);
+        
+        const tmp = this.targets.filter(targeted => target.getX() != targeted.getX() && target.getY() != targeted.getY())
+        this.targets.length = 0;
+        for(const elem of tmp){
+            this.targets.push(elem)
+        }
     }
 
+    /**
+     * This function clear the canvas
+     */
     cleanBoard(){
-        //clean the board
         this.ctx.fillStyle = "#fff";
         this.ctx.fillRect(0, 0, this.objDom.width, this.objDom.height);
     }
 
+    /**
+     * This function reafresh the canvas
+     */
     reafreshBoard(){
 
+        //cleaning
         cleanBoard();
-        
-        if(this.board_tab.length == 0){
-            let factor = 1;
+            /***
+             * La logique de l'alogorithme doit être la suivante :
+             *  _ On efface les objets sur le canvas  ( utilise cleanBoard)
+             *  _ On redessine les objet déjà apparus ( via le tab_board )
+             *  _ On continue de placer les targets en continue ( setInterval )
+             */
+
+        if(this.board_tab.length == 0){ //if we have nothing on the board
+            let factor = 1; 
             for(const target of this.targets){
-                setInterval(displayTargetsToBoard(target),factor*400);
-                this.board_tab.push(target);
+                this.tab_ids.push(setInterval(() =>{
+                    displayTargetsToBoard(target);
+                    this.board_tab.push(target);
+                },factor*400));
                 factor++; 
             }
-        }else{
+        }else{ // if we already have somthing on the board 
+
             for(const target of this.board_tab){
                 displayTargetsToBoard(target);
             }
