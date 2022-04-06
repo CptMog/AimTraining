@@ -1,22 +1,30 @@
-import Target from './classes/Target.js';
+import Board from "./classes/Board.class.js";
 
-let screenTarget = new Target(document.querySelector("#canvx"));
-screenTarget.setTimerBoardObj = document.querySelector("#timer");
-screenTarget.setScoreBoardObj = document.querySelector("#score");
+const canvas =  document.querySelector("#canvx");
+function reafreshBoard(board){
+    board.cleanBoard();
+    board.draw();
+    window.requestAnimationFrame(()=>{
+        reafreshBoard(board)
+    });
+}
 
-document.addEventListener('DOMContentLoaded',()=>{
+document.addEventListener('DOMContentLoaded',(event)=>{
 
-    document.querySelector("#canvx").addEventListener('click', e =>{
-        const rect = document.querySelector("#canvx").getBoundingClientRect()
-        const x = e.clientX - rect.left
-        const y = e.clientY - rect.top
-        screenTarget.targetDestroyed(x,y);
+    const board = new Board(canvas);
+    
+    
+    board.initTargetTab();
+    window.requestAnimationFrame(()=>{
+        reafreshBoard(board)
     })
 
-    document.querySelector('#start').addEventListener('click', e =>{
-        screenTarget.generatePopUp(15);
+    canvas.addEventListener('click',(event)=>{
+        const rect = canvas.getBoundingClientRect()
+        const x = event.clientX - rect.left
+        const y = event.clientY - rect.top
+        board.onchangePos(x,y);
     })
-
 
 })
 
