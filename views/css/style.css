@@ -36,19 +36,29 @@ main{
     background-color: #fff;
 }
 
+main #box_board{
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
 main #box_board div{
     padding: 1.5rem 5rem;
     background-color:#656565;
     color: white;
+    letter-spacing: 1.5px;
 }
 
 main #box_board button{
     background-color: #4B2D4D;
+    border: 2px solid #4B2D4D;
     color: white;
-    padding: 1.5rem;
+    padding: 1.5rem 4rem;
     border-radius: 1.5rem;
     border: none;
     font-size: 1.8rem;
+    
 }
 
 main #box_board div span{
@@ -57,8 +67,3 @@ main #box_board div span{
     color: #4B2D4D; */
 }
 
-main #box_board{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}

@@ -12,6 +12,7 @@ export default class Target {
         this.x = x;
         this.y = y;
         this.r = r;
+        this.point = 85;
         this.color = color;
     }
 
@@ -40,12 +41,16 @@ export default class Target {
     get getY(){
         return this.y;
     }
-
+ 
     get getR(){
         return this.r;
     }
 
     get getColor(){
         return this.color;
+    }
+
+    get getPoint(){
+        return this.point; 
     }
 }
