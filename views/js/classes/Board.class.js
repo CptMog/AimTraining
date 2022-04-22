@@ -21,6 +21,10 @@ export default class Board{
 
         this.score = 0;
 
+        this.ctx.font = "30px Arial";
+
+        this.ctx.fillText("Click on the 'start game' button", this.objCanvas.width/3.8, this.objCanvas.height/2);
+
     }
     
     /**
@@ -47,7 +51,6 @@ export default class Board{
 
         }
 
-        console.log(this.targets)
 
     }
 
@@ -56,7 +59,6 @@ export default class Board{
      * @param {Target} target 
      */
     draw(){
-
         this.targets.forEach(target =>{
 
             this.ctx.beginPath();
@@ -163,6 +165,13 @@ export default class Board{
         }else{
             if(this.second >0){
                 this.second--;
+            }
+
+            if(this.second == 0){
+                this.ctx.font = "30px Arial";
+                this.ctx.fillStyle = "#000";
+                this.ctx.fillText("Game finish ", this.objCanvas.width/3.8, this.objCanvas.height/2);
+                // console.log("toto")
             }
         }
 

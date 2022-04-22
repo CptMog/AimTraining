@@ -43,8 +43,13 @@ main #box_board{
     justify-content: space-evenly;
 }
 
-main #box_board div{
+main #box_board .box{
+    background-color:white;
+    text-align: center;
+}
+main #box_board .box > div{
     padding: 1.5rem 5rem;
+    border-radius: 0.9rem;
     background-color:#656565;
     color: white;
     letter-spacing: 1.5px;
@@ -58,7 +63,7 @@ main #box_board button{
     border-radius: 1.5rem;
     border: none;
     font-size: 1.8rem;
-    
+    cursor: pointer;
 }
 
 main #box_board div span{
